@@ -5,7 +5,7 @@
         <h5 class="whats-your-question-text">{{msg}}</h5>
       </b-col>
     </b-row>
-    <b-row class="type-question-here row-3">
+    <b-row class="type-question-here row-3" v-if="questions.length === 0">
         <b-col class="user-question">
           <b-form-input
             class="question-input"
@@ -16,24 +16,24 @@
           </b-form-input>
         </b-col>
         <b-col class="save">
-          <b-button class="grey-button"</b-button>
+          <b-button class="grey-button" @click="saveQuestion" v-if="questions.length === 0">Save Question</b-button>
         </b-col>
     </b-row>
-      <b-row class="type-question-here row-3 added-question">
+      <b-row class="type-question-here row-3 added-question" v-else v-for="question in questions" :key="question.id">
         <b-col class="user-question">
           <b-form-input
             class="question-input"
             type="text"
             size="lg"
-            placeholder="Type question here."
-            >
+            :placeholder="question.text"
+            readonly>
           </b-form-input>
         </b-col>
         <b-col class="save">
-          <b-button class="grey-button">Save Question</b-button>
+          <b-button class="grey-button" @click="saveQuestion" v-if="questions.length === 0">Save Question</b-button>
         </b-col>
     </b-row>
-    <div>
+    <div v-if="questions.length > 0">
       <b-row>
         <b-col class="whats-your-answer">
           <h5 class="whats-your-answer-text">Answers</h5>
@@ -46,21 +46,22 @@
               type="text"
               size="lg"
               placeholder="Type answer here."
-              v-model="newQuestion"
+              v-model="newAnswer"
               >
             </b-form-input>
           </b-col>
           <b-col class="answer-button-div">
-            <b-button class="answer-button"><span>Add Another Answer</span></b-button>
+            <b-button class="answer-button" @click="saveAnswer"><span>Add Another Answer</span></b-button>
           </b-col>
       </b-row>
-      <b-row class="type-answer-here">
+      <b-row class="type-answer-here" v-for="answer in answers" :key="answer.id">
           <b-col class="user-answer">
             <b-form-input
               class="question-input"
               type="text"
               size="lg"
-              placeholder="Type answer here."
+              :placeholder="answer.text"
+              readonly
               >
             </b-form-input>
           </b-col>
@@ -75,8 +76,51 @@
     data: function () {
       return {
         msg: "What's your question?",
-        newQuestion: ''
+        newQuestion: '',
+        questions: [],
+        newAnswer: '',
+        answers: [],
+        survey: [],
+        preview: false,
+        done: false,
+        submitted: false
       }
+    },
+    mounted: function() {
+      console.log('App mounted!');
+      if (localStorage.getItem('questions')) {
+        this.questions = JSON.parse(localStorage.getItem('questions'))
+      }
+      if (localStorage.getItem('answers')) {
+        this.answers = JSON.parse(localStorage.getItem('answers'))
+      }
+    },
+    watch:{
+      question: function() {
+        localStorage.setItem('newQuestion', JSON.stringify(this.newQuestion))
+      },
+      questions: function() {
+        console.log('Questions changed!!!')
+        localStorage.setItem('questions', JSON.stringify(this.questions))
+        console.log(this.questions)
+      },
+      answer: function() {
+        localStorage.setItem('newAnswer', JSON.stringify(this.newAnswer))
+      },
+      answers: function() {
+        console.log('Answers changed!!!')
+        localStorage.setItem('answers', JSON.stringify(this.answers))
+        console.log(this.answers)
+      }
+    },
+    methods: {
+      saveQuestion: function() {
+        this.questions.push({text: this.newQuestion})
+        this.msg = 'Question 1'
+      },
+      saveAnswer: function() {
+        this.answers.push({text: this.newAnswer})
+      },
     }
   }
 </script>
@@ -116,11 +160,6 @@ $font-weight-bolder: 500;
   margin-left: auto;
   margin-right: auto;
 
-.user-question
-  max-width: 758px;
-  height: 60px
-  width: 100%;
-
 .whats-your-question-text 
   color: #808080;
   font-size: 22px;
@@ -135,6 +174,38 @@ $font-weight-bolder: 500;
   margin-left: auto;
   margin-right: auto;
 
+.whats-your-answer
+  max-width: 600px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+.whats-your-answer-text 
+  color: #808080;
+  ont-size: 22px;
+  font-weight: $font-weight-bolder;
+  letter-spacing: -0.57px;
+  text-align: left;
+
+.type-answer-here
+  max-width: 600px;
+  height: 60px
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+.user-question
+  max-width: 758px;
+  height: 60px
+  width: 100%;
+  // margin-left: auto;
+  // margin-right: auto;
+
+.user-answer
+  max-width: 353px;
+  height: 60px
+  width: 100%;
+
 .grey-button
   background-color: #F2F2F2;
   border: 1px solid #808080;
@@ -145,6 +216,59 @@ $font-weight-bolder: 500;
   font-size: 14px;
   font-weight: 500;
 
+.answer-button
+  background-color: #F2F2F2;
+  border: 1px solid #808080;
+  border-radius: 2px;
+  // width: 142px;
+  height: 40px;
+  color: #3F3F3F;
+  font-size: 14px;
+  font-weight: 500;
+
+.answer-button-div
+  max-width: 155px;
+
+.save
+  max-width: 125px;
+  height: 40px;
+
 .row-3
   margin-bottom: 30px;
+
+.grey-button
+  background-color: #F2F2F2;
+  border: 1px solid #808080;
+  border-radius: 2px;
+  width: 125px;
+  height: 40px;
+  color: #3F3F3F;
+  font-size: 14px;
+  font-weight: 500;
+
+.blue-button
+  background-color: #009BAB;
+  border: 1px solid #007480;
+  border-radius: 2px;
+  width: 125px;
+  height: 40px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+
+.bottom-buttons
+  position: fixed;
+  bottom: 33px;
+  right: 45px
+
+.submit-button
+  background-color: #4A90E2;
+  border: 1px solid #4A90E2;
+  border-radius: 2px;
+  width: 125px;
+  height: 40px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+
 </style>
