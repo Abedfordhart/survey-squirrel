@@ -2,17 +2,20 @@
   <div id="app">
     <b-container fluid>
     <SurveySquirrelHeader/>
+    <WelcomeMessage/>
 </b-container>
   </div>
 </template>
 
 <script>
 import SurveySquirrelHeader from './components/SurveySquirrelHeader.vue';
+import WelcomeMessage from './components/WelcomeMessage.vue';
 
 export default {
   name: 'app',
   components: {
-    SurveySquirrelHeader
+    SurveySquirrelHeader,
+    WelcomeMessage
   }
 }
 </script>
