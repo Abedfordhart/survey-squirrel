@@ -3,6 +3,7 @@
     <b-container fluid>
     <SurveySquirrelHeader/>
     <WelcomeMessage/>
+    <QuestionInput/>
 </b-container>
   </div>
 </template>
@@ -10,12 +11,14 @@
 <script>
 import SurveySquirrelHeader from './components/SurveySquirrelHeader.vue';
 import WelcomeMessage from './components/WelcomeMessage.vue';
+import QuestionInput from './components/QuestionInput.vue';
 
 export default {
   name: 'app',
   components: {
     SurveySquirrelHeader,
-    WelcomeMessage
+    WelcomeMessage,
+    QuestionInput
   }
 }
 </script>
