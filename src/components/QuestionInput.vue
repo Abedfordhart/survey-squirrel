@@ -16,9 +16,56 @@
           </b-form-input>
         </b-col>
         <b-col class="save">
+          <b-button class="grey-button"</b-button>
+        </b-col>
+    </b-row>
+      <b-row class="type-question-here row-3 added-question">
+        <b-col class="user-question">
+          <b-form-input
+            class="question-input"
+            type="text"
+            size="lg"
+            placeholder="Type question here."
+            >
+          </b-form-input>
+        </b-col>
+        <b-col class="save">
           <b-button class="grey-button">Save Question</b-button>
         </b-col>
     </b-row>
+    <div>
+      <b-row>
+        <b-col class="whats-your-answer">
+          <h5 class="whats-your-answer-text">Answers</h5>
+        </b-col>
+      </b-row>
+      <b-row class="type-answer-here">
+          <b-col class="user-answer">
+            <b-form-input
+              class="question-input"
+              type="text"
+              size="lg"
+              placeholder="Type answer here."
+              v-model="newQuestion"
+              >
+            </b-form-input>
+          </b-col>
+          <b-col class="answer-button-div">
+            <b-button class="answer-button"><span>Add Another Answer</span></b-button>
+          </b-col>
+      </b-row>
+      <b-row class="type-answer-here">
+          <b-col class="user-answer">
+            <b-form-input
+              class="question-input"
+              type="text"
+              size="lg"
+              placeholder="Type answer here."
+              >
+            </b-form-input>
+          </b-col>
+      </b-row>
+    </div>
 </div>
 </template>
 
