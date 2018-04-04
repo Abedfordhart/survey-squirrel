@@ -24,7 +24,7 @@ export default {
 $font-stack: 'Roboto', sans-serif;
 
 html, body
-  height: 100%
+  height: 100%;
 
 .container-fluid
   height: 100%;
@@ -36,6 +36,6 @@ html, body
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100%
+  height: 100%;
 </style>
 

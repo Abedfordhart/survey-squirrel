@@ -31,7 +31,7 @@ $font-weight-bolder: 500;
   margin-bottom: 142px;
 
 .title-message 
-  color: #FFFFFF;;
+  color: #FFFFFF;
   font-size: 52px;
   font-weight: $font-weight-lighter;
   letter-spacing: -1.06px;

@@ -131,7 +131,7 @@
         this.answers = JSON.parse(localStorage.getItem('answers'))
       }
     },
-    watch:{
+    watch: {
       question: function() {
         localStorage.setItem('newQuestion', JSON.stringify(this.newQuestion))
       },
@@ -154,10 +154,10 @@
         this.answers.push({text: this.newAnswer})
       },
       handleDone: function() {
-        this.done = !this.done;
+        this.done = !this.done
       },
       handleSubmit: function() {
-        this.submitted = !this.submitted;
+        this.submitted = !this.submitted
       },
       startAnother: function() {
         localStorage.clear()
@@ -189,7 +189,7 @@ $font-weight-bolder: 500;
 .welcome-message
   color: #3F3F3F;
   font-size: 42px
-  font-weight: $font-weight-lighter
+  font-weight: $font-weight-lighter;
   letter-spacing: -0.85px;
   position: relative;
   top: 50%;
@@ -253,14 +253,14 @@ $font-weight-bolder: 500;
 
 .type-answer-here
   max-width: 600px;
-  height: 60px
+  height: 60px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
 
 .user-question
   max-width: 758px;
-  height: 60px
+  height: 60px;
   width: 100%;
 
 .user-answer
@@ -320,7 +320,7 @@ $font-weight-bolder: 500;
 .done-submit-buttons
   position: fixed;
   bottom: 33px;
-  right: 45px
+  right: 45px;
 
 .start-another-button
   background-color: #4A90E2;
