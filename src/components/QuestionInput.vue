@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div v-if="!submitted">
+    <b-row class="row-m2">
+    <b-col class="welcome">
+      <h1 class="welcome-message" v-if="!done">{{welcome}}</h1>
+      <h1 class="welcome-message" v-else>{{review}}</h1>
+    </b-col>
+  </b-row>
     <b-row>
       <b-col class="whats-your-question">
         <h5 class="whats-your-question-text">{{msg}}</h5>
@@ -82,13 +88,23 @@
     </div>
     <b-row class="done-submit-buttons">
       <b-col>
-        <!--devClear function for develpment to easily clear localStorage, change before prod. build-->
-        <b-button class="grey-button" @click="devClear">Add Question</b-button>
+        <!-- Add Question doesn't have functionality --> 
+        <b-button class="grey-button">Add Question</b-button>
         <b-button class="blue-button" @click="handleDone" v-if="!done">Done</b-button>
         <b-button class="submit-button" @click="handleSubmit" v-if="done">Submit</b-button>
       </b-col>
   </b-row>
 </div>
+<b-row class="survey-created" v-else>
+  <b-col>
+    <b-row class="start-another">
+    <h1 class="survey-created-text">Your survey has been created!</h1>
+    </b-row>
+    <b-row>
+    <b-button class="start-another-button" @click="startAnother">Start Another Survey</b-button>
+    </b-row>
+  </b-col>  
+</b-row>
 </template>
 
 <script>
@@ -97,6 +113,8 @@
     data: function () {
       return {
         msg: "What's your question?",
+        welcome: "Welcome to Survey Squirrel. Let's build a survey!",
+        review: "Review Survey",
         newQuestion: '',
         questions: [],
         newAnswer: '',
@@ -141,8 +159,9 @@
       handleSubmit: function() {
         this.submitted = !this.submitted;
       },
-      devClear: function() {
+      startAnother: function() {
         localStorage.clear()
+        location.reload()
       }
     }
   }
@@ -155,6 +174,26 @@ $survey-light-grey: #808080;
 $button-grey: #F2F2F2;
 $font-weight-lighter: 300;
 $font-weight-bolder: 500;
+
+.row-m2
+  margin-bottom: 56px;
+
+.welcome
+  border: 1px solid #979797;
+  max-width: 1007px;
+  height: 137px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+.welcome-message
+  color: #3F3F3F;
+  font-size: 42px
+  font-weight: $font-weight-lighter
+  letter-spacing: -0.85px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 
 .question-input::-webkit-input-placeholder 
   color: $survey-light-grey;
@@ -282,4 +321,36 @@ $font-weight-bolder: 500;
   position: fixed;
   bottom: 33px;
   right: 45px
+
+.start-another-button
+  background-color: #4A90E2;
+  border: 1px solid #4A90E2;
+  border-radius: 2px;
+  height: 40px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
+
+.survey-created
+  background-color: #FFFFFF;
+  border: 1px solid #979797;
+  max-width: 1007px;
+  height: 267px;
+  margin-left: auto;
+  margin-right: auto;
+
+.survey-created-text
+  color: #3F3F3F;
+  font-family: Roboto;
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: -0.85px;
+  margin-right: auto;
+  margin-left: auto;
+
+.start-another
+  height: 114px;
+  margin: 38px;
 </style>

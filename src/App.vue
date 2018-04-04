@@ -2,7 +2,6 @@
   <div id="app">
     <b-container fluid>
     <SurveySquirrelHeader/>
-    <WelcomeMessage/>
     <QuestionInput/>
 </b-container>
   </div>
@@ -10,14 +9,12 @@
 
 <script>
 import SurveySquirrelHeader from './components/SurveySquirrelHeader.vue';
-import WelcomeMessage from './components/WelcomeMessage.vue';
 import QuestionInput from './components/QuestionInput.vue';
 
 export default {
   name: 'app',
   components: {
     SurveySquirrelHeader,
-    WelcomeMessage,
     QuestionInput
   }
 }
@@ -25,7 +22,6 @@ export default {
 
 <style lang="sass">
 $font-stack: 'Roboto', sans-serif;
-$survey-green: #007480;
 
 html, body
   height: 100%

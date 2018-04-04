@@ -8,12 +8,7 @@
 
 <script>
   export default {
-    name: 'SurveySquirrelHeader',
-    data () {
-      return {
-        msg: 'This is the Header Vue'
-      }
-    }
+    name: 'SurveySquirrelHeader'
   }
 </script>
 
