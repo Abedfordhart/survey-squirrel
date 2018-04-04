@@ -5,7 +5,7 @@
         <h5 class="whats-your-question-text">{{msg}}</h5>
       </b-col>
     </b-row>
-    <b-row class="type-question-here row-3" v-if="questions.length === 0">
+    <b-row class="type-question-here row-3" v-if="questions.length === 0 && !done">
         <b-col class="user-question">
           <b-form-input
             class="question-input"
@@ -19,7 +19,7 @@
           <b-button class="grey-button" @click="saveQuestion" v-if="questions.length === 0">Save Question</b-button>
         </b-col>
     </b-row>
-      <b-row class="type-question-here row-3 added-question" v-else v-for="question in questions" :key="question.id">
+      <b-row class="type-question-here row-3 added-question" v-else-if="questions.length !== 0 && !done" v-for="question in questions" :key="question.id">
         <b-col class="user-question">
           <b-form-input
             class="question-input"
@@ -33,7 +33,20 @@
           <b-button class="grey-button" @click="saveQuestion" v-if="questions.length === 0">Save Question</b-button>
         </b-col>
     </b-row>
-    <div v-if="questions.length > 0">
+    <b-row class="type-question-here row-3" v-if="done">
+        <b-col class="user-question">
+          <b-form-select
+            value=""
+            class="question-input"
+            :options="answers"
+            size="lg"
+            readonly
+            >
+              <option value="" slot="first" selected disabled>{{newQuestion}}</option>
+          </b-form-select>
+        </b-col>
+    </b-row>
+    <div v-if="questions.length > 0 && !done">
       <b-row>
         <b-col class="whats-your-answer">
           <h5 class="whats-your-answer-text">Answers</h5>
@@ -67,6 +80,13 @@
           </b-col>
       </b-row>
     </div>
+    <b-row class="bottom-buttons">
+      <b-col>
+        <b-button class="grey-button" @click="devClear">Add Question</b-button>
+        <b-button class="blue-button" @click="handleDone" v-if="!done">Done</b-button>
+        <b-button class="submit-button" @click="handleSubmit" v-if="done">Submit</b-button>
+      </b-col>
+  </b-row>
 </div>
 </template>
 
@@ -80,7 +100,6 @@
         questions: [],
         newAnswer: '',
         answers: [],
-        survey: [],
         preview: false,
         done: false,
         submitted: false
@@ -121,6 +140,15 @@
       saveAnswer: function() {
         this.answers.push({text: this.newAnswer})
       },
+      handleDone: function() {
+        this.done = !this.done;
+      },
+      handleSubmit: function() {
+        this.submitted = !this.submitted;
+      },
+      devClear: function() {
+        localStorage.clear()
+      }
     }
   }
 </script>
@@ -198,8 +226,6 @@ $font-weight-bolder: 500;
   max-width: 758px;
   height: 60px
   width: 100%;
-  // margin-left: auto;
-  // margin-right: auto;
 
 .user-answer
   max-width: 353px;
@@ -220,7 +246,6 @@ $font-weight-bolder: 500;
   background-color: #F2F2F2;
   border: 1px solid #808080;
   border-radius: 2px;
-  // width: 142px;
   height: 40px;
   color: #3F3F3F;
   font-size: 14px;
