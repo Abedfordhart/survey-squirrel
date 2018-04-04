@@ -82,6 +82,7 @@
     </div>
     <b-row class="bottom-buttons">
       <b-col>
+        <!--devClear function for develpment to easily clear localStorage, change before prod. build-->
         <b-button class="grey-button" @click="devClear">Add Question</b-button>
         <b-button class="blue-button" @click="handleDone" v-if="!done">Done</b-button>
         <b-button class="submit-button" @click="handleSubmit" v-if="done">Submit</b-button>
