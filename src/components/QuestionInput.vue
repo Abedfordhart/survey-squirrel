@@ -6,24 +6,24 @@
       <h1 class="welcome-message" v-else>{{review}}</h1>
     </b-col>
   </b-row>
-    <b-row>
-      <b-col class="whats-your-question">
-        <h5 class="whats-your-question-text">{{msg}}</h5>
+  <b-row>
+    <b-col class="whats-your-question">
+      <h5 class="whats-your-question-text">{{msg}}</h5>
+    </b-col>
+  </b-row>
+  <b-row class="type-question-here row-3" v-if="questions.length === 0 && !done">
+      <b-col class="user-question">
+        <b-form-input
+          class="question-input"
+          type="text"
+          size="lg"
+          placeholder="Type question here."
+          v-model="newQuestion">
+        </b-form-input>
       </b-col>
-    </b-row>
-    <b-row class="type-question-here row-3" v-if="questions.length === 0 && !done">
-        <b-col class="user-question">
-          <b-form-input
-            class="question-input"
-            type="text"
-            size="lg"
-            placeholder="Type question here."
-            v-model="newQuestion">
-          </b-form-input>
-        </b-col>
-        <b-col class="save">
-          <b-button class="grey-button" @click="saveQuestion" v-if="questions.length === 0">Save Question</b-button>
-        </b-col>
+      <b-col class="save">
+        <b-button class="grey-button" @click="saveQuestion" v-if="questions.length === 0">Save Question</b-button>
+      </b-col>
     </b-row>
       <b-row class="type-question-here row-3 added-question" v-else-if="questions.length !== 0 && !done" v-for="question in questions" :key="question.id">
         <b-col class="user-question">
@@ -46,8 +46,7 @@
             class="question-input"
             :options="answers"
             size="lg"
-            readonly
-            >
+            readonly>
               <option value="" slot="first" selected disabled>{{newQuestion}}</option>
           </b-form-select>
         </b-col>
@@ -65,8 +64,7 @@
               type="text"
               size="lg"
               placeholder="Type answer here."
-              v-model="newAnswer"
-              >
+              v-model="newAnswer">
             </b-form-input>
           </b-col>
           <b-col class="answer-button-div">
@@ -80,15 +78,14 @@
               type="text"
               size="lg"
               :placeholder="answer.text"
-              readonly
-              >
+              readonly>
             </b-form-input>
           </b-col>
       </b-row>
     </div>
     <b-row class="done-submit-buttons">
       <b-col>
-        <!-- Add Question doesn't have functionality --> 
+        <!-- No add question functionality currently--> 
         <b-button class="grey-button">Add Question</b-button>
         <b-button class="blue-button" @click="handleDone" v-if="!done">Done</b-button>
         <b-button class="submit-button" @click="handleSubmit" v-if="done">Submit</b-button>
@@ -98,10 +95,10 @@
 <b-row class="survey-created" v-else>
   <b-col>
     <b-row class="start-another">
-    <h1 class="survey-created-text">Your survey has been created!</h1>
+      <h1 class="survey-created-text">Your survey has been created!</h1>
     </b-row>
     <b-row>
-    <b-button class="start-another-button" @click="startAnother">Start Another Survey</b-button>
+      <b-button class="start-another-button" @click="startAnother">Start Another Survey</b-button>
     </b-row>
   </b-col>  
 </b-row>
