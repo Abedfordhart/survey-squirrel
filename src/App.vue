@@ -26,8 +26,6 @@ export default {
 <style lang="sass">
 $font-stack: 'Roboto', sans-serif;
 $survey-green: #007480;
-$font-weight-lighter: 300;
-$font-weight-bolder: 500;
 
 html, body
   height: 100%

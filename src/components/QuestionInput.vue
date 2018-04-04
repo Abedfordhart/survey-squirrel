@@ -80,7 +80,7 @@
           </b-col>
       </b-row>
     </div>
-    <b-row class="bottom-buttons">
+    <b-row class="done-submit-buttons">
       <b-col>
         <!--devClear function for develpment to easily clear localStorage, change before prod. build-->
         <b-button class="grey-button" @click="devClear">Add Question</b-button>
@@ -101,7 +101,6 @@
         questions: [],
         newAnswer: '',
         answers: [],
-        preview: false,
         done: false,
         submitted: false
       }
@@ -152,29 +151,31 @@
 <style lang="sass">
 $font-stack: 'Roboto', sans-serif;
 $survey-green: #007480;
+$survey-light-grey: #808080;
+$button-grey: #F2F2F2;
 $font-weight-lighter: 300;
 $font-weight-bolder: 500;
 
 .question-input::-webkit-input-placeholder 
-  color: #808080;
+  color: $survey-light-grey;
   font-family: $font-stack;
   font-weight: $font-weight-lighter;
 
 
 .question-input:-ms-input-placeholder 
-  color: #808080;
+  color: $survey-light-grey;
   font-family: $font-stack;
   font-weight: $font-weight-lighter;
 
 
 .question-input:-moz-placeholder 
-  color: #808080;
+  color: $survey-light-grey;
   font-family: $font-stack;
   font-weight: $font-weight-lighter;
 
 
 .question-input::-moz-placeholder 
-  color: #808080;
+  color: $survey-light-grey;
   font-family: $font-stack;
   font-weight: $font-weight-lighter;
 
@@ -185,7 +186,7 @@ $font-weight-bolder: 500;
   margin-right: auto;
 
 .whats-your-question-text 
-  color: #808080;
+  color: $survey-light-grey;
   font-size: 22px;
   font-weight: $font-weight-bolder;
   letter-spacing: -0.57px;
@@ -205,7 +206,7 @@ $font-weight-bolder: 500;
   margin-right: auto;
 
 .whats-your-answer-text 
-  color: #808080;
+  color: $survey-light-grey;
   ont-size: 22px;
   font-weight: $font-weight-bolder;
   letter-spacing: -0.57px;
@@ -229,8 +230,8 @@ $font-weight-bolder: 500;
   width: 100%;
 
 .grey-button
-  background-color: #F2F2F2;
-  border: 1px solid #808080;
+  background-color: $button-grey;
+  border: 1px solid $survey-light-grey;
   border-radius: 2px;
   width: 125px;
   height: 40px;
@@ -239,8 +240,8 @@ $font-weight-bolder: 500;
   font-weight: 500;
 
 .answer-button
-  background-color: #F2F2F2;
-  border: 1px solid #808080;
+  background-color: $button-grey;
+  border: 1px solid $survey-light-grey;
   border-radius: 2px;
   height: 40px;
   color: #3F3F3F;
@@ -257,16 +258,6 @@ $font-weight-bolder: 500;
 .row-3
   margin-bottom: 30px;
 
-.grey-button
-  background-color: #F2F2F2;
-  border: 1px solid #808080;
-  border-radius: 2px;
-  width: 125px;
-  height: 40px;
-  color: #3F3F3F;
-  font-size: 14px;
-  font-weight: 500;
-
 .blue-button
   background-color: #009BAB;
   border: 1px solid #007480;
@@ -276,11 +267,6 @@ $font-weight-bolder: 500;
   color: #FFFFFF;
   font-size: 14px;
   font-weight: 500;
-
-.bottom-buttons
-  position: fixed;
-  bottom: 33px;
-  right: 45px
 
 .submit-button
   background-color: #4A90E2;
@@ -292,4 +278,8 @@ $font-weight-bolder: 500;
   font-size: 14px;
   font-weight: 500;
 
+.done-submit-buttons
+  position: fixed;
+  bottom: 33px;
+  right: 45px
 </style>
