@@ -107,7 +107,6 @@
       }
     },
     mounted: function() {
-      console.log('App mounted!');
       if (localStorage.getItem('questions')) {
         this.questions = JSON.parse(localStorage.getItem('questions'))
       }
@@ -120,17 +119,13 @@
         localStorage.setItem('newQuestion', JSON.stringify(this.newQuestion))
       },
       questions: function() {
-        console.log('Questions changed!!!')
         localStorage.setItem('questions', JSON.stringify(this.questions))
-        console.log(this.questions)
       },
       answer: function() {
         localStorage.setItem('newAnswer', JSON.stringify(this.newAnswer))
       },
       answers: function() {
-        console.log('Answers changed!!!')
         localStorage.setItem('answers', JSON.stringify(this.answers))
-        console.log(this.answers)
       }
     },
     methods: {
